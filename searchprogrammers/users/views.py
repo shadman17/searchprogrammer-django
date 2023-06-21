@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 from .utils import searchProfiles, paginateProfiles
 
+
 # Create your views here.
 
 
