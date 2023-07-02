@@ -42,12 +42,12 @@ class Project(models.Model):
         upVotes = reviews.filter(value='Up').count()
         totalVotes = reviews.count()
         
+        if totalVotes != 0:
+            ratio = (upVotes/totalVotes) * 100
+            self.vote_total = totalVotes
+            self.vote_ratio = ratio
         
-        ratio = (upVotes/totalVotes) * 100
-        self.vote_total = totalVotes
-        self.vote_ratio = ratio
-        
-        self.save()
+            self.save()
 
 
 class Review(models.Model):
