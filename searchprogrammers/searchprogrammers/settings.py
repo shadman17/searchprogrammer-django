@@ -13,10 +13,15 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+import dj_database_url
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,9 +31,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-jn)a-*n#jw9qtqefsrtu9ipk+!#7#y-#$a&n)ek_=*zb6^iqe-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -129,23 +134,19 @@ WSGI_APPLICATION = 'searchprogrammers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'SearchProgrammer',
-#         'USER': 'postgres',
-#         'PASSWORD': 'P@ssword123',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+
+#Render POSTGRES Database
+DATABASES = {
+    'default' : dj_database_url.parse(env('DATABASE_URL'))
+}
 
 
 # Password validation
@@ -182,8 +183,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'hazardousgaming10@gmail.com'
+EMAIL_HOST_PASSWORD = 'yslpcssduajjgmpg'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
